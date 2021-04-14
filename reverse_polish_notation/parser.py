@@ -7,6 +7,12 @@ def parse(value):
     lexemes = []
     num_builder = ""
 
+
+    if len(value.strip()) == 0:
+        err = "Ошибка! Пустая строка"
+        print(err)
+        return "", err
+
     # Идем по строке
     for chair in value:
         # Игнорируем пробелы
@@ -28,4 +34,5 @@ def parse(value):
     # Обработка конца строки
     if num_builder != "":
         lexemes+=[num_builder]
+    
     return lexemes, ""

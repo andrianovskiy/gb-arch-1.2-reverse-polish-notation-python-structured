@@ -5,12 +5,14 @@ from reverse_polish_notation.constants import ADD
 from reverse_polish_notation.constants import SUBTRACK
 from reverse_polish_notation.constants import MULTIPLY
 from reverse_polish_notation.constants import DIVIDE
+from reverse_polish_notation.constants import UNARY_OPERATORS
 from reverse_polish_notation.support import isfloat
 
 # Преобразование выражаения в обратну польскую нотацию
 def to_reverse_polish(lexemes):
     stack = []
     reverse_polish_lexemes = []
+    prev_lex = lexemes[0]
     for lex in lexemes:
         if isfloat(lex):
             reverse_polish_lexemes += [lex]
@@ -23,6 +25,8 @@ def to_reverse_polish(lexemes):
         elif stack == []:
                 stack = [lex]
         else:
+            if prev_lex == OPEN_BRACKET and lex in UNARY_OPERATORS:
+                reverse_polish_lexemes += ["0"]
             reverse_polish_lexemes, stack, err = push_until_func(reverse_polish_lexemes, stack, lex, prev_lex)
             if err != "":
                 return "", err
