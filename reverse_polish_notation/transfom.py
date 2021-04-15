@@ -6,7 +6,7 @@ from reverse_polish_notation.constants import SUBTRACK
 from reverse_polish_notation.constants import MULTIPLY
 from reverse_polish_notation.constants import DIVIDE
 from reverse_polish_notation.constants import UNARY_OPERATORS
-from reverse_polish_notation.support import isfloat
+from reverse_polish_notation.checktype import isfloat
 
 # Преобразование выражаения в обратну польскую нотацию
 def to_reverse_polish(lexemes):
